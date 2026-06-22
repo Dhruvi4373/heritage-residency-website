@@ -1,4 +1,179 @@
-# hotelproject
+# Hotel Heritage & Residences - Premium Website
+
+A luxury boutique hotel website featuring Pushp Residency and Karohi Villa, built with modern web technologies and premium design aesthetics inspired by high-end Dribbble designs.
+
+## 🌟 Features
+
+- **Cinematic Hero Animations**: Split-text animations with smooth staggered delays and organic camera-like zoom effects
+- **Premium Design System**: Comprehensive design tokens with luxury color palette, fluid typography, and sophisticated spacing
+- **Interactive Property Cards**: Dual-property split layout with advanced hover micro-animations and opacity transitions
+- **Smooth Scroll Animations**: Intersection Observer-based animations with premium cubic-bezier easing curves
+- **Responsive Navigation**: Blur backdrop navbar with mobile menu overlay and smooth transitions
+- **Immersive Maps**: Desaturated, styled map embeds with custom filters matching the dark luxury aesthetic
+- **Premium Contact Forms**: Elegant form design with validation and smooth interactions
+- **Performance Optimized**: Code splitting, lazy loading, and optimized asset delivery
+
+## 🛠️ Tech Stack
+
+- **Framework**: React 18.3
+- **Build Tool**: Vite 5.2
+- **Routing**: React Router DOM 6.23
+- **Animations**: Framer Motion 11.2
+- **Styling**: CSS Modules with Design Tokens
+- **Fonts**: Playfair Display (Serif) + Plus Jakarta Sans (Sans-serif)
+
+## 📁 Project Structure
+
+```
+src/
+├── components/
+│   ├── common/
+│   │   ├── PropertySplitCard.jsx    # Property showcase cards
+│   │   ├── RoomCard.jsx              # Room/suite display cards
+│   │   └── ScrollToTop.jsx           # Route change scroll reset
+│   └── layout/
+│       ├── Navbar.jsx                # Premium navigation
+│       └── Footer.jsx                # Site footer
+├── data/
+│   ├── propertiesData.js         # Property information
+│   └── contactData.js            # Contact details & maps
+├── hooks/
+│   ├── useScrollAnimation.js     # Intersection Observer hook
+│   ├── useScrollProgress.js      # Scroll position tracking
+│   └── useMediaQuery.js          # Responsive breakpoints
+├── pages/
+│   ├── Home.jsx                  # Landing page
+│   ├── PropertyPage.jsx          # Individual property pages
+│   └── Contact.jsx               # Contact & inquiry page
+├── styles/
+│   ├── tokens.css                # Design system tokens
+│   └── global.css                # Global styles & resets
+├── App.jsx                       # Main app component
+└── main.jsx                      # Application entry
+```
+
+## 🎨 Design System
+
+### Color Palette
+- **Primary Dark**: `#121212` (Deep Charcoal)
+- **Cream Background**: `#FDFBF7` (Warm Off-White)
+- **Accent Gold**: `#D4AF37` (Luxury Gold)
+- **Accent Brass**: `#C5A880` (Muted Brass)
+
+### Typography
+- **Serif**: Playfair Display (300-700)
+- **Sans**: Plus Jakarta Sans (300-800)
+- **Fluid Scaling**: clamp() functions for responsive typography
+
+### Animation Easing
+- **Premium Curve**: `cubic-bezier(0.16, 1, 0.3, 1)`
+- **Smooth Deceleration**: Ultra-smooth momentum ease
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+The development server will start at `http://localhost:3000`
+
+## 🏛️ Properties
+
+### Pushp Residency
+- **Location**: Jaipur, Rajasthan
+- **Type**: Urban Heritage Boutique Hotel
+- **Rooms**: Executive Suite, Heritage Room, Premium Deluxe
+- **Highlights**: Rooftop dining, city views, contemporary heritage design
+
+### Karohi Villa
+- **Location**: Udaipur, Rajasthan  
+- **Type**: Lakeside Luxury Heritage Villa
+- **Rooms**: Royal Lake View Suite, Heritage Courtyard Suite, Maharaja Villa Suite
+- **Highlights**: Private lake access, traditional architecture, exclusive experiences
+
+## 📝 Key Features Implementation
+
+### Hero Animation Sequence
+1. **Phase 1**: Split-text with staggered slide-up from hidden overflow
+2. **Phase 2**: Image container expands from 80% to 100% width
+3. **Phase 3**: Inner image scales down from 1.15 to 1.0 (cinematic zoom)
+
+### Property Split Cards
+- Hover triggers opacity reduction (0.4) on sibling cards
+- Active card scales image (1.05) with smooth clip-path expansion
+- Gradient overlay intensifies on hover
+
+### Scroll Animations
+- Intersection Observer with 0.1-0.3 threshold
+- Staggered delays (0.1-0.2s) for sequential reveals
+- Premium easing curve for all transitions
+
+## 📦 Build & Deployment
+
+```bash
+# Production build
+npm run build
+
+# Output directory: dist/
+# Deploy dist/ to your hosting platform
+```
+
+### Recommended Hosting
+- Vercel
+- Netlify  
+- GitLab Pages
+- AWS S3 + CloudFront
+
+## 🔧 Development
+
+### Code Style
+- Component-based architecture
+- CSS Modules for scoped styling
+- Custom hooks for reusable logic
+- Semantic HTML5
+- Accessible ARIA labels
+
+### Performance
+- Code splitting by route
+- Lazy loading for images
+- Optimized bundle size
+- Tree shaking enabled
+
+## 📞 Contact Information
+
+**Central Reservations**: +91 141 7100 5000  
+**Email**: reservations@heritageresidences.com  
+**Website**: [Your Domain]
+
+## 📝 License
+
+This project is proprietary and confidential.
+
+## 👥 Credits
+
+- **Design Inspiration**: Premium Dribbble hotel/hospitality designs
+- **Photography**: Unsplash (placeholder images)
+- **Fonts**: Google Fonts
+
+---
+
+**Built with ❤️ for Hotel Heritage & Residences**
 
 
 
