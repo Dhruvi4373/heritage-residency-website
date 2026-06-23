@@ -156,6 +156,57 @@ export const propertiesData = {
       '/images/pushp/restaurant.jpg',
       '/images/pushp/rooftop.jpg',
       '/images/pushp/courtyard.jpg'
+    ],
+
+    nearbyPlaces: [
+      {
+        id: 'hawa-mahal',
+        name: 'Hawa Mahal',
+        distance: '1.8 km',
+        category: 'Heritage Monument',
+        description: 'The iconic Palace of Winds — a five-storey sandstone façade of 953 latticed windows, built in 1799 for royal ladies to observe street life unseen.',
+        image: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=1200&auto=format&fit=crop'
+      },
+      {
+        id: 'city-palace-jaipur',
+        name: 'City Palace',
+        distance: '2.3 km',
+        category: 'Royal Palace',
+        description: 'A magnificent complex of courtyards, gardens and buildings blending Rajput, Mughal and European architectural styles at the heart of the Pink City.',
+        image: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?q=80&w=1200&auto=format&fit=crop'
+      },
+      {
+        id: 'jantar-mantar',
+        name: 'Jantar Mantar',
+        distance: '2.1 km',
+        category: 'UNESCO World Heritage',
+        description: 'An 18th-century astronomical observatory housing the world\'s largest stone sundial — a UNESCO World Heritage Site of extraordinary scientific precision.',
+        image: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=1200&auto=format&fit=crop'
+      },
+      {
+        id: 'albert-hall',
+        name: 'Albert Hall Museum',
+        distance: '3.5 km',
+        category: 'Museum',
+        description: 'Rajasthan\'s oldest museum, housed in a stunning Indo-Saracenic building, displaying a rich collection of artifacts, paintings, carpets and crystal works.',
+        image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=1200&auto=format&fit=crop'
+      },
+      {
+        id: 'nahargarh-fort',
+        name: 'Nahargarh Fort',
+        distance: '6 km',
+        category: 'Hill Fort',
+        description: 'Perched on the Aravalli ridge, this 18th-century fort offers sweeping panoramic views of Jaipur city — especially breathtaking at sunset.',
+        image: 'https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=1200&auto=format&fit=crop'
+      },
+      {
+        id: 'johari-bazaar',
+        name: 'Johari Bazaar',
+        distance: '2.8 km',
+        category: 'Heritage Market',
+        description: 'Jaipur\'s legendary jewellery market — a vibrant street of gem traders, goldsmiths and textile merchants that has thrived for over three centuries.',
+        image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1200&auto=format&fit=crop'
+      }
     ]
   },
   
@@ -326,6 +377,57 @@ export const propertiesData = {
       '/images/karohi/pool.jpg',
       '/images/karohi/dining.jpg',
       '/images/karohi/terrace.jpg'
+    ],
+
+    nearbyPlaces: [
+      {
+        id: 'lake-pichola',
+        name: 'Lake Pichola',
+        distance: '8 km',
+        category: 'Scenic Lake',
+        description: 'An artificial freshwater lake created in 1362 AD, framed by palaces, temples and ghats — the shimmering soul of Udaipur\'s romantic landscape.',
+        image: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=1200&auto=format&fit=crop'
+      },
+      {
+        id: 'city-palace-udaipur',
+        name: 'City Palace Udaipur',
+        distance: '9 km',
+        category: 'Royal Palace',
+        description: 'The largest palace complex in Rajasthan, rising majestically above Lake Pichola — a layered tapestry of Rajput and Mughal architecture spanning four centuries.',
+        image: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?q=80&w=1200&auto=format&fit=crop'
+      },
+      {
+        id: 'jag-mandir',
+        name: 'Jag Mandir',
+        distance: '10 km',
+        category: 'Island Palace',
+        description: 'A 17th-century palace built on an island in Lake Pichola, once sheltering the Mughal prince Shah Jahan — accessible only by a serene boat ride.',
+        image: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=1200&auto=format&fit=crop'
+      },
+      {
+        id: 'sajjangarh-fort',
+        name: 'Sajjangarh Fort',
+        distance: '12 km',
+        category: 'Monsoon Palace',
+        description: 'The ethereal Monsoon Palace crowning the Aravalli hills — built to watch monsoon clouds roll in, now offering unrivalled sunset views over Udaipur.',
+        image: 'https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=1200&auto=format&fit=crop'
+      },
+      {
+        id: 'bagore-ki-haveli',
+        name: 'Bagore Ki Haveli',
+        distance: '9.5 km',
+        category: 'Heritage Haveli',
+        description: 'An 18th-century lakeside haveli with 138 rooms, housing a museum of royal costumes and hosting nightly Rajasthani folk dance performances.',
+        image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=1200&auto=format&fit=crop'
+      },
+      {
+        id: 'shilpgram',
+        name: 'Shilpgram',
+        distance: '5 km',
+        category: 'Craft Village',
+        description: 'A living rural arts and crafts complex celebrating the folk traditions of western India — with artisan demonstrations, tribal huts and open-air performances.',
+        image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1200&auto=format&fit=crop'
+      }
     ]
   }
 };
