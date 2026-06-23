@@ -1,15 +1,48 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
 import { getPropertyById } from '@data/propertiesData';
-import { useScrollAnimation } from '@hooks/useScrollAnimation';
 import RoomCard from '@components/common/RoomCard';
 import styles from './PropertyPage.module.css';
+
+const useInView = (threshold = 0.15) => {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.unobserve(el); } },
+      { threshold }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return [ref, visible];
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 36 },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] } },
+};
+const stagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+};
+
+const HERO_IMAGES = {
+  'pushp-residency': 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070&auto=format&fit=crop',
+  'karohi-villa':    'https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2080&auto=format&fit=crop',
+};
 
 const PropertyPage = () => {
   const { propertyId } = useParams();
   const property = getPropertyById(propertyId);
-  const [heroRef, heroVisible] = useScrollAnimation({ once: true, threshold: 0.2 });
-  const [roomsRef, roomsVisible] = useScrollAnimation({ once: true, threshold: 0.1 });
+
+  const [heroRef,    heroVisible]    = useInView(0.1);
+  const [roomsRef,   roomsVisible]   = useInView(0.08);
+  const [amenRef,    amenVisible]    = useInView(0.1);
+  const [expRef,     expVisible]     = useInView(0.15);
 
   if (!property) {
     return (
@@ -20,34 +53,29 @@ const PropertyPage = () => {
     );
   }
 
-  const getPropertyHeroImage = (id) => {
-    const images = {
-      'pushp-residency': 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070&auto=format&fit=crop',
-      'karohi-villa': 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2080&auto=format&fit=crop'
-    };
-    return images[id];
-  };
-
   return (
-    <div className={styles.propertyPage}>
-      {/* Hero Section */}
+    <div className={styles.page}>
+
+      {/* ======================================================
+          HERO
+         ====================================================== */}
       <section className={styles.hero} ref={heroRef}>
         <motion.div
-          className={styles.heroImage}
+          className={styles.heroImgWrap}
           initial={{ scale: 1.1, opacity: 0 }}
           animate={heroVisible ? { scale: 1, opacity: 1 } : {}}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1] }}
         >
-          <img src={getPropertyHeroImage(property.id)} alt={property.name} />
+          <img src={HERO_IMAGES[property.id]} alt={property.name} className={styles.heroImg} />
           <div className={styles.heroOverlay} />
         </motion.div>
 
         <div className={styles.heroContent}>
           <motion.span
-            className={styles.heroLabel}
-            initial={{ opacity: 0, y: 30 }}
+            className={styles.heroEyebrow}
+            initial={{ opacity: 0, y: 24 }}
             animate={heroVisible ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.6, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
           >
             {property.type}
           </motion.span>
@@ -56,140 +84,150 @@ const PropertyPage = () => {
             className={styles.heroTitle}
             initial={{ opacity: 0, y: 40 }}
             animate={heroVisible ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
           >
             {property.name}
           </motion.h1>
 
           <motion.p
             className={styles.heroTagline}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 28 }}
             animate={heroVisible ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.75, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
           >
             {property.tagline}
           </motion.p>
 
           <motion.div
             className={styles.heroMeta}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={heroVisible ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.7, delay: 0.65, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className={styles.heroMetaItem}>
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path
-                  d="M10 10.625C11.0355 10.625 11.875 9.78553 11.875 8.75C11.875 7.71447 11.0355 6.875 10 6.875C8.96447 6.875 8.125 7.71447 8.125 8.75C8.125 9.78553 8.96447 10.625 10 10.625Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                />
-                <path
-                  d="M10 17.5C12.5 14.375 16.25 10.625 16.25 7.5C16.25 4.04822 13.4518 1.25 10 1.25C6.54822 1.25 3.75 4.04822 3.75 7.5C3.75 10.625 7.5 14.375 10 17.5Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                />
+            <span className={styles.heroMetaItem}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M8 8.75a1.75 1.75 0 1 0 0-3.5 1.75 1.75 0 0 0 0 3.5Z"
+                  stroke="currentColor" strokeWidth="1.3" />
+                <path d="M8 14C10.5 11 13.5 8.5 13.5 6a5.5 5.5 0 1 0-11 0C2.5 8.5 5.5 11 8 14Z"
+                  stroke="currentColor" strokeWidth="1.3" />
               </svg>
-              <span>
-                {property.location.city}, {property.location.state}
-              </span>
-            </div>
-
-            <div className={styles.heroMetaItem}>
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path
-                  d="M2.5 7.5L10 2.5L17.5 7.5V15.8333C17.5 16.2754 17.3244 16.6993 17.0118 17.0118C16.6993 17.3244 16.2754 17.5 15.8333 17.5H4.16667C3.72464 17.5 3.30072 17.3244 2.98816 17.0118C2.67559 16.6993 2.5 16.2754 2.5 15.8333V7.5Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                />
-                <path d="M7.5 17.5V10H12.5V17.5" stroke="currentColor" strokeWidth="1.5" />
+              {property.location.city}, {property.location.state}
+            </span>
+            <span className={styles.heroMetaItem}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <rect x="2" y="4" width="12" height="9" rx="1.5" stroke="currentColor" strokeWidth="1.3" />
+                <path d="M5 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1" stroke="currentColor" strokeWidth="1.3" />
               </svg>
-              <span>{property.rooms.length} Room Categories</span>
-            </div>
+              {property.rooms.length} Room Categories
+            </span>
           </motion.div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section className={`${styles.about} bg-cream`}>
-        <div className="container">
-          <div className={styles.aboutContent}>
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <span className={styles.sectionLabel}>About</span>
-              <h2 className={styles.sectionTitle}>{property.description}</h2>
-              <p className={styles.aboutText}>{property.longDescription}</p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Rooms Section */}
-      <section className={styles.rooms} ref={roomsRef}>
-        <div className="container">
-          <div className={styles.roomsHeader}>
-            <motion.span
-              className={styles.sectionLabel}
-              initial={{ opacity: 0, y: 20 }}
-              animate={roomsVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            >
-              Accommodations
-            </motion.span>
-            <motion.h2
-              className={styles.sectionTitle}
-              initial={{ opacity: 0, y: 30 }}
-              animate={roomsVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            >
-              Our Rooms & Suites
-            </motion.h2>
-          </div>
-
-          <div className={styles.roomsGrid}>
-            {property.rooms.map((room, index) => (
-              <RoomCard key={room.id} room={room} index={index} isVisible={roomsVisible} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Amenities Section */}
-      <section className={`${styles.amenities} bg-cream`}>
-        <div className="container">
+      {/* ======================================================
+          ABOUT STRIP
+         ====================================================== */}
+      <section className={styles.about}>
+        <div className={styles.aboutInner}>
           <motion.div
-            className={styles.amenitiesHeader}
+            className={styles.aboutText}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className={styles.sectionLabel}>Amenities</span>
-            <h2 className={styles.sectionTitle}>Exceptional Services</h2>
+            <span className={styles.eyebrow}>About</span>
+            <h2 className={styles.aboutTitle}>{property.description}</h2>
+            <p className={styles.aboutBody}>{property.longDescription}</p>
           </motion.div>
 
-          <div className={styles.amenitiesGrid}>
-            {property.amenities.map((category, index) => (
+          <motion.div
+            className={styles.aboutStats}
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {[
+              { v: property.rooms.length, l: 'Room Types' },
+              { v: property.amenities.length, l: 'Amenity Categories' },
+              { v: property.experiences.length, l: 'Experiences' },
+            ].map(s => (
+              <div key={s.l} className={styles.aboutStat}>
+                <span className={styles.aboutStatVal}>{s.v}</span>
+                <span className={styles.aboutStatLabel}>{s.l}</span>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ======================================================
+          ROOMS
+         ====================================================== */}
+      <section className={styles.rooms} ref={roomsRef}>
+        <div className={styles.sectionHead}>
+          <motion.span
+            className={styles.eyebrow}
+            initial={{ opacity: 0, y: 18 }}
+            animate={roomsVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
+            Accommodations
+          </motion.span>
+          <motion.h2
+            className={styles.sectionTitle}
+            initial={{ opacity: 0, y: 28 }}
+            animate={roomsVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            Rooms &amp; Suites
+          </motion.h2>
+        </div>
+
+        <div className={styles.roomsGrid}>
+          {property.rooms.map((room, i) => (
+            <RoomCard key={room.id} room={room} index={i} isVisible={roomsVisible} />
+          ))}
+        </div>
+      </section>
+
+      {/* ======================================================
+          AMENITIES
+         ====================================================== */}
+      <section className={styles.amenities} ref={amenRef}>
+        <div className={styles.amenInner}>
+          <div className={styles.sectionHead}>
+            <motion.span
+              className={styles.eyebrow}
+              initial={{ opacity: 0, y: 18 }}
+              animate={amenVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            >
+              Amenities
+            </motion.span>
+            <motion.h2
+              className={styles.sectionTitle}
+              initial={{ opacity: 0, y: 28 }}
+              animate={amenVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              Exceptional Services
+            </motion.h2>
+          </div>
+
+          <div className={styles.amenGrid}>
+            {property.amenities.map((cat, i) => (
               <motion.div
-                key={category.category}
-                className={styles.amenityCategory}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{
-                  duration: 0.8,
-                  delay: index * 0.1,
-                  ease: [0.16, 1, 0.3, 1]
-                }}
+                key={cat.category}
+                className={styles.amenCat}
+                initial={{ opacity: 0, y: 36 }}
+                animate={amenVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
               >
-                <h3 className={styles.amenityCategoryTitle}>{category.category}</h3>
-                <ul className={styles.amenityList}>
-                  {category.items.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
+                <h3 className={styles.amenCatTitle}>{cat.category}</h3>
+                <ul className={styles.amenList}>
+                  {cat.items.map((item, j) => <li key={j}>{item}</li>)}
                 </ul>
               </motion.div>
             ))}
@@ -197,31 +235,68 @@ const PropertyPage = () => {
         </div>
       </section>
 
-      {/* Contact CTA */}
-      <section className={styles.cta}>
-        <div className="container">
+      {/* ======================================================
+          EXPERIENCES
+         ====================================================== */}
+      <section className={styles.experiences} ref={expRef}>
+        <div className={styles.expInner}>
           <motion.div
-            className={styles.ctaContent}
+            className={styles.sectionHead}
+            variants={stagger}
+            initial="hidden"
+            animate={expVisible ? 'show' : 'hidden'}
+          >
+            <motion.span className={styles.eyebrow} variants={fadeUp}>Experiences</motion.span>
+            <motion.h2 className={styles.sectionTitle} variants={fadeUp}>
+              Curated Moments
+            </motion.h2>
+          </motion.div>
+
+          <div className={styles.expGrid}>
+            {property.experiences.map((exp, i) => (
+              <motion.div
+                key={exp}
+                className={styles.expItem}
+                initial={{ opacity: 0, y: 28 }}
+                animate={expVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.65, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <span className={styles.expNum}>{String(i + 1).padStart(2, '0')}</span>
+                <span className={styles.expText}>{exp}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ======================================================
+          CTA BANNER
+         ====================================================== */}
+      <section className={styles.cta}>
+        <div className={styles.ctaInner}>
+          <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h2 className={styles.ctaTitle}>Ready to Experience {property.name}?</h2>
-            <p className={styles.ctaText}>
-              Contact our reservations team to plan your perfect stay
+            <span className={styles.eyebrowLight}>Ready to visit?</span>
+            <h2 className={styles.ctaTitle}>Experience {property.name}</h2>
+            <p className={styles.ctaDesc}>
+              Contact our reservations team to plan your perfect stay.
             </p>
             <div className={styles.ctaActions}>
-              <Link to="/contact" className={styles.ctaButton}>
+              <Link to="/contact" className={styles.ctaBtnPrimary}>
                 Make a Reservation
               </Link>
-              <a href={`tel:${property.contact.phone}`} className={styles.ctaButtonSecondary}>
+              <a href={`tel:${property.contact.phone}`} className={styles.ctaBtnGhost}>
                 {property.contact.phone}
               </a>
             </div>
           </motion.div>
         </div>
       </section>
+
     </div>
   );
 };
