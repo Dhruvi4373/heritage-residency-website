@@ -1,5 +1,10 @@
 /* ============================================
-   FOOTER — Light Editorial
+   FOOTER — Light Editorial  (restructured)
+   ============================================
+   Layout order (top → bottom):
+     1. .body        — brand + links
+     2. .metrics     — live metrics strip
+     3. .bottomBar   — copyright / legal
    ============================================ */
 
 .footer {
@@ -7,27 +12,30 @@
   color: var(--color-text-inverse);
 }
 
-/* ---- Top band ---- */
-.topBand {
+/* ============================================
+   1. MAIN BODY
+   ============================================ */
+
+.body {
   padding: var(--sp-5xl) 0 var(--sp-4xl);
-  border-bottom: 1px solid rgba(197, 168, 128, 0.15);
+  border-bottom: 1px solid rgba(197, 168, 128, 0.12);
 }
 
-.topInner {
+.bodyInner {
   max-width: var(--max-w);
   margin-inline: auto;
   padding-inline: var(--section-x);
   display: grid;
-  grid-template-columns: 1.6fr 1fr;
+  grid-template-columns: 1fr 1.4fr;
   gap: var(--sp-5xl);
   align-items: start;
 }
 
-/* ---- Brand ---- */
+/* ---- Brand column ---- */
 .brand {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-lg);
+  gap: var(--sp-xl);
 }
 
 .logo {
@@ -56,12 +64,13 @@
 }
 
 .brandDesc {
-  max-width: 340px;
+  max-width: 320px;
   font-size: var(--fs-sm);
   line-height: var(--lh-relaxed);
-  color: rgba(253, 251, 247, 0.5);
+  color: rgba(253, 251, 247, 0.48);
 }
 
+/* Social icons */
 .social {
   display: flex;
   align-items: center;
@@ -76,7 +85,7 @@
   justify-content: center;
   border: 1px solid rgba(197, 168, 128, 0.2);
   border-radius: var(--r-md);
-  color: rgba(253, 251, 247, 0.5);
+  color: rgba(253, 251, 247, 0.45);
   transition:
     border-color var(--dur-fast) var(--ease-out),
     color var(--dur-fast) var(--ease-out),
@@ -88,8 +97,43 @@
   transform: translateY(-2px);
 }
 
-/* ---- Links grid ---- */
-.linksGrid {
+/* Reservations block */
+.reservations {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xs);
+  padding-top: var(--sp-lg);
+  border-top: 1px solid rgba(197, 168, 128, 0.12);
+}
+
+.resLabel {
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-widest);
+  color: rgba(253, 251, 247, 0.35);
+}
+
+.resPhone {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-medium);
+  color: rgba(253, 251, 247, 0.75);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.resPhone:hover { color: var(--color-accent); }
+
+.resEmail {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  color: rgba(253, 251, 247, 0.4);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.resEmail:hover { color: var(--color-accent); }
+
+/* ---- Links area ---- */
+.linksArea {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--sp-2xl);
@@ -107,7 +151,7 @@
   font-weight: var(--fw-semibold);
   text-transform: uppercase;
   letter-spacing: var(--ls-widest);
-  color: rgba(253, 251, 247, 0.4);
+  color: rgba(253, 251, 247, 0.35);
 }
 
 .linkList {
@@ -121,20 +165,124 @@
 .linkList a {
   font-family: var(--font-sans);
   font-size: var(--fs-sm);
-  color: rgba(253, 251, 247, 0.6);
+  color: rgba(253, 251, 247, 0.55);
   transition: color var(--dur-fast) var(--ease-out);
   line-height: var(--lh-normal);
 }
 .linkList a:hover { color: var(--color-accent); }
 
-.addr {
-  font-style: normal;
-  line-height: var(--lh-relaxed);
+/* Location items */
+.locItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.locName {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: rgba(253, 251, 247, 0.65);
+}
+.locCity {
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  color: rgba(253, 251, 247, 0.35);
+  letter-spacing: var(--ls-wide);
 }
 
-/* ---- Bottom bar ---- */
-.bottomBar {
+/* ============================================
+   2. LIVE METRICS STRIP
+   ============================================ */
+
+.metrics {
+  border-bottom: 1px solid rgba(197, 168, 128, 0.12);
   padding: var(--sp-lg) 0;
+}
+
+.metricsInner {
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--section-x);
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.metric {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  padding: var(--sp-sm) var(--sp-xl);
+  flex: 1;
+  min-width: 180px;
+}
+
+.metricLabel {
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wider);
+  color: rgba(253, 251, 247, 0.3);
+  white-space: nowrap;
+}
+
+.metricValue {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: rgba(253, 251, 247, 0.65);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.metricLink {
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.metricLink:hover { color: var(--color-accent); }
+
+/* Live dot — green pulse */
+.metricDot {
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4);
+  animation: livePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+  0%   { box-shadow: 0 0 0 0   rgba(74, 222, 128, 0.5); }
+  70%  { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
+  100% { box-shadow: 0 0 0 0   rgba(74, 222, 128, 0); }
+}
+
+/* Animated guest count dot */
+.metricPulse {
+  flex-shrink: 0;
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+/* Vertical dividers between metrics */
+.metricDivider {
+  width: 1px;
+  height: 28px;
+  background: rgba(197, 168, 128, 0.15);
+  flex-shrink: 0;
+}
+
+/* ============================================
+   3. LEGAL BOTTOM BAR
+   ============================================ */
+
+.bottomBar {
+  padding: var(--sp-md) 0;
 }
 
 .bottomInner {
@@ -151,7 +299,7 @@
 .copy {
   font-family: var(--font-sans);
   font-size: var(--fs-label);
-  color: rgba(253, 251, 247, 0.3);
+  color: rgba(253, 251, 247, 0.25);
 }
 
 .legal {
@@ -162,7 +310,7 @@
 .legal a {
   font-family: var(--font-sans);
   font-size: var(--fs-label);
-  color: rgba(253, 251, 247, 0.3);
+  color: rgba(253, 251, 247, 0.25);
   transition: color var(--dur-fast) var(--ease-out);
 }
 .legal a:hover { color: var(--color-accent); }
@@ -171,24 +319,29 @@
   width: 3px;
   height: 3px;
   border-radius: 50%;
-  background: rgba(253, 251, 247, 0.2);
+  background: rgba(253, 251, 247, 0.15);
 }
 
 /* ============================================
    RESPONSIVE
    ============================================ */
 
-@media (max-width: 1024px) {
-  .topInner { grid-template-columns: 1fr; gap: var(--sp-3xl); }
-  .linksGrid { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 1200px) {
+  .bodyInner { grid-template-columns: 1fr; gap: var(--sp-3xl); }
+  .linksArea { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 768px) {
-  .topBand { padding: var(--sp-3xl) 0 var(--sp-2xl); }
-  .linksGrid { grid-template-columns: 1fr 1fr; gap: var(--sp-xl); }
-  .bottomInner { flex-direction: column; align-items: flex-start; gap: var(--sp-sm); }
+  .body { padding: var(--sp-3xl) 0 var(--sp-2xl); }
+  .linksArea { grid-template-columns: 1fr 1fr; gap: var(--sp-xl); }
+  .metricsInner { gap: 0; }
+  .metric { min-width: 140px; padding: var(--sp-sm) var(--sp-md); }
+  .metricDivider { display: none; }
+  .bottomInner { flex-direction: column; align-items: flex-start; gap: var(--sp-xs); }
 }
 
 @media (max-width: 480px) {
-  .linksGrid { grid-template-columns: 1fr; }
+  .linksArea { grid-template-columns: 1fr; }
+  .metricsInner { flex-direction: column; align-items: flex-start; }
+  .metric { width: 100%; border-bottom: 1px solid rgba(197, 168, 128, 0.08); }
 }
