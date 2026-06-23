@@ -1,171 +1,166 @@
+/* ============================================
+   ROOM CARD — Light Editorial
+   ============================================ */
+
 .card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  background: var(--color-bg-charcoal);
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  transition: transform var(--duration-normal) var(--ease-premium);
+  transition:
+    transform var(--dur-normal) var(--ease-premium),
+    box-shadow var(--dur-normal) var(--ease-premium);
 }
-
 .card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
 }
 
-.cardImage {
+/* ---- Image ---- */
+.imgWrap {
   position: relative;
-  width: 100%;
-  height: 280px;
+  height: 260px;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
-.cardImage img {
+.img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--duration-slow) var(--ease-premium);
+  transition: transform var(--dur-slower) var(--ease-premium);
 }
+.card:hover .img { transform: scale(1.05); }
 
-.card:hover .cardImage img {
-  transform: scale(1.05);
-}
-
-.cardImageOverlay {
+.imgBadge {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(18, 18, 18, 0) 0%,
-    rgba(18, 18, 18, 0.3) 100%
-  );
+  bottom: var(--sp-md);
+  left: var(--sp-md);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  padding: 0.4em 0.9em;
+  background: rgba(253, 251, 247, 0.88);
+  backdrop-filter: blur(8px);
+  border-radius: var(--r-full);
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-primary);
+  letter-spacing: var(--ls-wide);
 }
 
-.cardContent {
-  padding: var(--space-xl);
+.badgeDot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+/* ---- Body ---- */
+.body {
+  padding: var(--sp-xl);
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: var(--sp-md);
   flex: 1;
 }
 
-.cardTitle {
+.title {
   font-family: var(--font-serif);
-  font-size: var(--font-size-h5);
-  font-weight: var(--font-weight-regular);
-  color: var(--color-text-primary-dark);
-  line-height: var(--line-height-snug);
+  font-size: var(--fs-h5);
+  font-weight: var(--fw-regular);
+  color: var(--color-text-primary);
+  line-height: var(--lh-snug);
 }
 
-.cardMeta {
-  display: flex;
-  align-items: center;
-  gap: var(--space-lg);
-  padding-bottom: var(--space-md);
-  border-bottom: 1px solid var(--color-border-subtle-dark);
+.desc {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-relaxed);
+  color: var(--color-text-muted);
 }
 
-.cardMetaItem {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
-  font-family: var(--font-sans);
-  font-size: var(--font-size-caption);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text-secondary-dark);
-}
-
-.cardMetaItem svg {
-  color: var(--color-accent-gold);
-}
-
-.cardDescription {
-  font-size: var(--font-size-body-sm);
-  line-height: var(--line-height-relaxed);
-  color: var(--color-text-secondary-dark);
-}
-
-.cardAmenities {
+/* ---- Amenities ---- */
+.amenities {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--sp-sm);
   margin-top: auto;
+  padding-top: var(--sp-md);
+  border-top: 1px solid var(--color-border);
 }
 
-.cardAmenitiesLabel {
+.amenLabel {
   font-family: var(--font-sans);
-  font-size: var(--font-size-caption);
-  font-weight: var(--font-weight-semibold);
+  font-size: var(--fs-label);
+  font-weight: var(--fw-semibold);
   text-transform: uppercase;
-  letter-spacing: var(--letter-spacing-wider);
-  color: var(--color-accent-gold);
+  letter-spacing: var(--ls-wider);
+  color: var(--color-accent);
 }
 
-.cardAmenitiesList {
+.amenList {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  gap: var(--sp-xs);
+}
+.amenList li {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
 }
 
-.cardAmenitiesList li {
-  font-size: var(--font-size-caption);
-  color: var(--color-text-tertiary-dark);
-  padding-left: var(--space-md);
-  position: relative;
-}
-
-.cardAmenitiesList li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+.amenDot {
+  flex-shrink: 0;
   width: 4px;
   height: 4px;
-  background: var(--color-accent-gold-muted);
   border-radius: 50%;
+  background: var(--color-accent-light);
 }
 
-.cardFooter {
-  padding-top: var(--space-md);
-  border-top: 1px solid var(--color-border-subtle-dark);
-  margin-top: var(--space-md);
+/* ---- Footer ---- */
+.footer {
+  padding-top: var(--sp-md);
+  border-top: 1px solid var(--color-border);
+  margin-top: var(--sp-md);
 }
 
-.cardPrice {
+.price {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
+  align-items: baseline;
+  gap: var(--sp-xs);
 }
 
-.cardPriceLabel {
+.priceLabel {
   font-family: var(--font-sans);
-  font-size: var(--font-size-caption);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--fs-label);
+  font-weight: var(--fw-semibold);
   text-transform: uppercase;
-  letter-spacing: var(--letter-spacing-wider);
-  color: var(--color-text-tertiary-dark);
+  letter-spacing: var(--ls-wider);
+  color: var(--color-text-faint);
 }
 
-.cardPriceValue {
+.priceValue {
   font-family: var(--font-serif);
-  font-size: var(--font-size-h5);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-accent-gold);
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-regular);
+  color: var(--color-accent-deep);
+  line-height: 1;
 }
 
-.cardPriceUnit {
+.priceUnit {
   font-family: var(--font-sans);
-  font-size: var(--font-size-caption);
-  color: var(--color-text-tertiary-dark);
+  font-size: var(--fs-sm);
+  color: var(--color-text-faint);
 }
 
-/* Responsive */
+/* ---- Responsive ---- */
 @media (max-width: 768px) {
-  .cardImage {
-    height: 240px;
-  }
-
-  .cardContent {
-    padding: var(--space-lg);
-  }
+  .imgWrap { height: 220px; }
+  .body { padding: var(--sp-lg); }
 }
