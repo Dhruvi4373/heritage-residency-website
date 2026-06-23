@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { getPropertyById } from '@data/propertiesData';
 import RoomCard from '@components/common/RoomCard';
+import NearbyPlaces from '@components/common/NearbyPlaces';
 import styles from './PropertyPage.module.css';
 
 const useInView = (threshold = 0.15) => {
@@ -268,6 +269,16 @@ const PropertyPage = () => {
           </div>
         </div>
       </section>
+
+      {/* ======================================================
+          NEARBY PLACES
+         ====================================================== */}
+      {property.nearbyPlaces && property.nearbyPlaces.length > 0 && (
+        <NearbyPlaces
+          places={property.nearbyPlaces}
+          city={property.location.city}
+        />
+      )}
 
       {/* ======================================================
           CTA BANNER
