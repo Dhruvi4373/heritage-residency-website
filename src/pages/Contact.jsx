@@ -281,14 +281,31 @@ const Contact = () => {
                     title={`${prop.name} Location`}
                   />
                 </div>
-                <div className={styles.mapCardAddr}>
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M7 7.4a1.4 1.4 0 1 0 0-2.8 1.4 1.4 0 0 0 0 2.8Z"
-                      stroke="currentColor" strokeWidth="1.2" />
-                    <path d="M7 12.25C9.1 9.8 11.375 7.7 11.375 5.25a4.375 4.375 0 1 0-8.75 0C2.625 7.7 4.9 9.8 7 12.25Z"
-                      stroke="currentColor" strokeWidth="1.2" />
-                  </svg>
-                  {prop.address}, {prop.city} {prop.pincode}
+                <div className={styles.mapCardFooter}>
+                  <div className={styles.mapCardAddr}>
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <path d="M7 7.4a1.4 1.4 0 1 0 0-2.8 1.4 1.4 0 0 0 0 2.8Z"
+                        stroke="currentColor" strokeWidth="1.2" />
+                      <path d="M7 12.25C9.1 9.8 11.375 7.7 11.375 5.25a4.375 4.375 0 1 0-8.75 0C2.625 7.7 4.9 9.8 7 12.25Z"
+                        stroke="currentColor" strokeWidth="1.2" />
+                    </svg>
+                    {prop.address}, {prop.city} {prop.pincode}
+                  </div>
+                  {/* Open in Maps — links directly to property coordinates */}
+                  <a
+                    href={prop.mapsDirectUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.openMapsBtn}
+                  >
+                    Open in Maps
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <path d="M5.5 2.5H2.5A1 1 0 0 0 1.5 3.5V11.5A1 1 0 0 0 2.5 12.5H10.5A1 1 0 0 0 11.5 11.5V8.5"
+                        stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+                      <path d="M8 1.5H12.5M12.5 1.5V6M12.5 1.5L6 8"
+                        stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </a>
                 </div>
               </motion.div>
             ))}
