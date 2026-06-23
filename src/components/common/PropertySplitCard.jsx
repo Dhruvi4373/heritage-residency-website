@@ -3,114 +3,95 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import styles from './PropertySplitCard.module.css';
 
-const PropertySplitCard = ({ property, index, isVisible }) => {
-  const [isHovered, setIsHovered] = useState(false);
+const IMAGES = {
+  'pushp-residency': {
+    main: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070&auto=format&fit=crop',
+    hover: 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070&auto=format&fit=crop',
+  },
+  'karohi-villa': {
+    main: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2080&auto=format&fit=crop',
+    hover: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=2070&auto=format&fit=crop',
+  },
+};
 
-  const getPropertyImage = (propertyId) => {
-    const images = {
-      'pushp-residency': 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070&auto=format&fit=crop',
-      'karohi-villa': 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2080&auto=format&fit=crop'
-    };
-    return images[propertyId] || images['pushp-residency'];
-  };
+const PropertySplitCard = ({ property, index, isVisible }) => {
+  const [hovered, setHovered] = useState(false);
+  const imgs = IMAGES[property.id] || IMAGES['pushp-residency'];
 
   return (
-    <motion.div
+    <motion.article
       className={styles.card}
-      initial={{ opacity: 0, y: 60 }}
+      initial={{ opacity: 0, y: 48 }}
       animate={isVisible ? { opacity: 1, y: 0 } : {}}
-      transition={{
-        duration: 0.8,
-        delay: index * 0.2,
-        ease: [0.16, 1, 0.3, 1]
-      }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      transition={{ duration: 0.85, delay: index * 0.18, ease: [0.16, 1, 0.3, 1] }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      data-hovered={hovered}
     >
       <Link to={`/property/${property.id}`} className={styles.cardLink}>
-        <div className={styles.cardImageWrapper}>
-          <motion.div
-            className={styles.cardImageInner}
-            animate={{
-              scale: isHovered ? 1.05 : 1
-            }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <img
-              src={getPropertyImage(property.id)}
-              alt={property.name}
-              className={styles.cardImage}
-            />
-            <div className={styles.cardImageOverlay} />
-          </motion.div>
+        {/* Image layer */}
+        <div className={styles.imgWrap}>
+          {/* Main image */}
+          <motion.img
+            src={imgs.main}
+            alt={property.name}
+            className={styles.imgMain}
+            animate={{ scale: hovered ? 1.06 : 1 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          />
+          {/* Hover reveal image — clip-path expansion */}
+          <motion.img
+            src={imgs.hover}
+            alt={`${property.name} interior`}
+            className={styles.imgHover}
+            initial={{ clipPath: 'inset(0 100% 0 0)' }}
+            animate={{ clipPath: hovered ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)' }}
+            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+          />
+          <div className={styles.imgOverlay} />
+        </div>
 
-          <motion.div
-            className={styles.cardContent}
-            animate={{
-              y: isHovered ? -10 : 0
-            }}
+        {/* Content */}
+        <div className={styles.content}>
+          <span className={styles.eyebrow}>{property.type}</span>
+
+          <motion.h3
+            className={styles.title}
+            animate={{ y: hovered ? -6 : 0 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className={styles.cardLabel}>{property.type}</span>
-            <h3 className={styles.cardTitle}>{property.name}</h3>
-            <p className={styles.cardTagline}>{property.tagline}</p>
+            {property.name}
+          </motion.h3>
 
-            <div className={styles.cardMeta}>
-              <span className={styles.cardLocation}>
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M8 8.5C8.82843 8.5 9.5 7.82843 9.5 7C9.5 6.17157 8.82843 5.5 8 5.5C7.17157 5.5 6.5 6.17157 6.5 7C6.5 7.82843 7.17157 8.5 8 8.5Z"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M8 14C10 11 13 8.5 13 6C13 3.23858 10.7614 1 8 1C5.23858 1 3 3.23858 3 6C3 8.5 6 11 8 14Z"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                {property.location.city}, {property.location.state}
-              </span>
+          <p className={styles.tagline}>{property.tagline}</p>
 
-              <motion.span
-                className={styles.cardCta}
-                animate={{
-                  x: isHovered ? 5 : 0
-                }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              >
-                Explore
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M4 10H16M16 10L10 4M16 10L10 16"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </motion.span>
-            </div>
-          </motion.div>
+          <div className={styles.meta}>
+            <span className={styles.location}>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M7 7.4a1.4 1.4 0 1 0 0-2.8 1.4 1.4 0 0 0 0 2.8Z"
+                  stroke="currentColor" strokeWidth="1.2" />
+                <path d="M7 12.25C9.1 9.8 11.375 7.7 11.375 5.25a4.375 4.375 0 1 0-8.75 0C2.625 7.7 4.9 9.8 7 12.25Z"
+                  stroke="currentColor" strokeWidth="1.2" />
+              </svg>
+              {property.location.city}, {property.location.state}
+            </span>
+
+            <motion.span
+              className={styles.explore}
+              animate={{ x: hovered ? 6 : 0 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            >
+              Explore
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M3.5 9H14.5M14.5 9L9.5 4M14.5 9L9.5 14"
+                  stroke="currentColor" strokeWidth="1.3"
+                  strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </motion.span>
+          </div>
         </div>
       </Link>
-    </motion.div>
+    </motion.article>
   );
 };
 
