@@ -1,159 +1,145 @@
 :root {
-  /* ========================================
-     PREMIUM COLOR PALETTE
-     ======================================== */
-  
-  /* Primary Backgrounds */
-  --color-bg-dark: #121212;
-  --color-bg-charcoal: #1A1A1A;
-  --color-bg-cream: #FDFBF7;
-  --color-bg-warm-white: #FAF8F4;
-  
-  /* Accent Colors */
-  --color-accent-gold: #D4AF37;
-  --color-accent-brass: #C5A880;
-  --color-accent-gold-muted: #B8975F;
-  
-  /* Text Colors */
-  --color-text-primary-dark: #FFFFFF;
-  --color-text-primary-light: #1A1A1A;
-  --color-text-secondary-dark: rgba(255, 255, 255, 0.65);
-  --color-text-secondary-light: rgba(26, 26, 26, 0.65);
-  --color-text-tertiary-dark: rgba(255, 255, 255, 0.45);
-  --color-text-tertiary-light: rgba(26, 26, 26, 0.45);
-  
-  /* Overlay & Backdrop */
-  --color-overlay-dark: rgba(18, 18, 18, 0.7);
-  --color-overlay-light: rgba(253, 251, 247, 0.85);
-  --color-backdrop-blur: rgba(18, 18, 18, 0.4);
-  
-  /* Border & Dividers */
-  --color-border-gold: rgba(212, 175, 55, 0.3);
-  --color-border-subtle-dark: rgba(255, 255, 255, 0.1);
-  --color-border-subtle-light: rgba(26, 26, 26, 0.1);
-  
-  /* ========================================
-     TYPOGRAPHY SYSTEM
-     ======================================== */
-  
-  /* Font Families */
-  --font-serif: 'Playfair Display', Georgia, serif;
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  
-  /* Font Sizes - Fluid Scale */
-  --font-size-hero: clamp(3rem, 8vw, 6.5rem);
-  --font-size-h1: clamp(2.5rem, 6vw, 5rem);
-  --font-size-h2: clamp(2rem, 5vw, 4rem);
-  --font-size-h3: clamp(1.75rem, 4vw, 3rem);
-  --font-size-h4: clamp(1.5rem, 3vw, 2.25rem);
-  --font-size-h5: clamp(1.25rem, 2.5vw, 1.75rem);
-  --font-size-body-lg: clamp(1.125rem, 2vw, 1.375rem);
-  --font-size-body: clamp(1rem, 1.5vw, 1.125rem);
-  --font-size-body-sm: clamp(0.875rem, 1.25vw, 1rem);
-  --font-size-caption: clamp(0.75rem, 1vw, 0.875rem);
-  --font-size-label: 0.75rem;
-  
-  /* Font Weights */
-  --font-weight-light: 300;
-  --font-weight-regular: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-extrabold: 800;
-  
-  /* Line Heights */
-  --line-height-tight: 1.05;
-  --line-height-snug: 1.2;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.75;
-  --line-height-loose: 2;
-  
-  /* Letter Spacing */
-  --letter-spacing-tight: -0.03em;
-  --letter-spacing-normal: 0;
-  --letter-spacing-wide: 0.05em;
-  --letter-spacing-wider: 0.1em;
-  --letter-spacing-widest: 0.2em;
-  
-  /* ========================================
-     SPACING SYSTEM
-     ======================================== */
-  
-  --space-xs: 0.5rem;      /* 8px */
-  --space-sm: 0.75rem;     /* 12px */
-  --space-md: 1rem;        /* 16px */
-  --space-lg: 1.5rem;      /* 24px */
-  --space-xl: 2rem;        /* 32px */
-  --space-2xl: 3rem;       /* 48px */
-  --space-3xl: 4rem;       /* 64px */
-  --space-4xl: 6rem;       /* 96px */
-  --space-5xl: 8rem;       /* 128px */
-  --space-6xl: 12rem;      /* 192px */
-  
-  /* Section Spacing */
-  --section-padding-y: clamp(4rem, 10vw, 10rem);
-  --section-padding-x: clamp(1.5rem, 5vw, 8rem);
-  --container-max-width: 1600px;
-  --content-max-width: 1200px;
-  
-  /* ========================================
-     BORDER RADIUS
-     ======================================== */
-  
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-  --radius-2xl: 32px;
-  --radius-full: 9999px;
-  
-  /* ========================================
-     SHADOWS & EFFECTS
-     ======================================== */
-  
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  
-  --blur-sm: 4px;
-  --blur-md: 8px;
-  --blur-lg: 12px;
-  --blur-xl: 16px;
-  
-  /* ========================================
-     TRANSITIONS & ANIMATIONS
-     ======================================== */
-  
-  /* Durations */
-  --duration-instant: 100ms;
-  --duration-fast: 200ms;
-  --duration-normal: 300ms;
-  --duration-slow: 500ms;
-  --duration-slower: 700ms;
-  --duration-slowest: 1000ms;
-  
-  /* Easing Functions */
-  --ease-linear: linear;
-  --ease-in: cubic-bezier(0.4, 0, 1, 1);
-  --ease-out: cubic-bezier(0, 0, 0.2, 1);
-  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  
-  /* ========================================
-     Z-INDEX LAYERS
-     ======================================== */
-  
-  --z-base: 0;
-  --z-dropdown: 100;
-  --z-sticky: 200;
-  --z-fixed: 300;
-  --z-modal-backdrop: 400;
-  --z-modal: 500;
-  --z-popover: 600;
-  --z-tooltip: 700;
-  --z-notification: 800;
-  --z-max: 999;
+  /* ============================================
+     LIGHT EDITORIAL PALETTE — ARIDA-INSPIRED
+     ============================================ */
+
+  /* Canvas / Backgrounds */
+  --color-canvas:        #F9F6F0;   /* warm alabaster — page base */
+  --color-surface:       #FDFBF7;   /* slightly lighter surface cards */
+  --color-surface-alt:   #F2EDE5;   /* subtle warm tint for alternating sections */
+  --color-surface-dark:  #1E1B18;   /* deep espresso — footer / dark accent blocks */
+
+  /* Text */
+  --color-text-primary:  #1A1A1A;   /* near-black, soft espresso */
+  --color-text-body:     #2C2520;   /* warm dark brown for body copy */
+  --color-text-muted:    #66615C;   /* desaturated taupe for metadata */
+  --color-text-faint:    #A09890;   /* very light for placeholders */
+  --color-text-inverse:  #FDFBF7;   /* text on dark surfaces */
+
+  /* Accent — Earthy Gold / Taupe */
+  --color-accent:        #C5A880;   /* primary accent — earthy gold */
+  --color-accent-deep:   #A8895F;   /* deeper hover state */
+  --color-accent-light:  #DCD6CD;   /* ultra-light taupe for borders */
+  --color-accent-wash:   rgba(197, 168, 128, 0.12); /* tinted bg wash */
+
+  /* Borders & Dividers */
+  --color-border:        #DCD6CD;   /* 1px lines, card edges */
+  --color-border-strong: #C5A880;   /* active / hover borders */
+  --color-border-faint:  rgba(197, 168, 128, 0.25);
+
+  /* Glassmorphism Navbar */
+  --color-nav-glass:     rgba(249, 246, 240, 0.82);
+
+  /* Overlays on images */
+  --color-overlay-img:   rgba(26, 26, 26, 0.28);
+  --color-overlay-heavy: rgba(26, 26, 26, 0.55);
+
+  /* ============================================
+     TYPOGRAPHY
+     ============================================ */
+
+  --font-serif: 'Playfair Display', 'Georgia', serif;
+  --font-sans:  'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Fluid sizes */
+  --fs-hero:   clamp(3rem, 8vw, 6.5rem);
+  --fs-h1:     clamp(2.5rem, 6vw, 5rem);
+  --fs-h2:     clamp(2rem, 5vw, 3.75rem);
+  --fs-h3:     clamp(1.625rem, 3.5vw, 2.75rem);
+  --fs-h4:     clamp(1.375rem, 2.5vw, 2rem);
+  --fs-h5:     clamp(1.125rem, 2vw, 1.5rem);
+  --fs-body-lg: clamp(1.0625rem, 1.75vw, 1.25rem);
+  --fs-body:   clamp(0.9375rem, 1.4vw, 1.0625rem);
+  --fs-sm:     clamp(0.8125rem, 1.1vw, 0.9375rem);
+  --fs-label:  0.6875rem;  /* 11px — uppercase eyebrow labels */
+
+  /* Weights */
+  --fw-light:    300;
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  /* Line heights */
+  --lh-tight:   1.05;
+  --lh-snug:    1.2;
+  --lh-normal:  1.55;
+  --lh-relaxed: 1.75;
+
+  /* Letter spacing */
+  --ls-tight:   -0.02em;
+  --ls-normal:  0em;
+  --ls-wide:    0.04em;
+  --ls-wider:   0.1em;
+  --ls-widest:  0.2em;
+
+  /* ============================================
+     SPACING
+     ============================================ */
+
+  --sp-2xs: 0.25rem;   /*  4px */
+  --sp-xs:  0.5rem;    /*  8px */
+  --sp-sm:  0.75rem;   /* 12px */
+  --sp-md:  1rem;      /* 16px */
+  --sp-lg:  1.5rem;    /* 24px */
+  --sp-xl:  2rem;      /* 32px */
+  --sp-2xl: 3rem;      /* 48px */
+  --sp-3xl: 4rem;      /* 64px */
+  --sp-4xl: 6rem;      /* 96px */
+  --sp-5xl: 8rem;      /* 128px */
+  --sp-6xl: 12rem;     /* 192px */
+
+  --section-y:  clamp(5rem, 11vw, 11rem);
+  --section-x:  clamp(1.25rem, 5vw, 7rem);
+  --max-w:      1560px;
+  --content-w:  1160px;
+
+  /* ============================================
+     RADII
+     ============================================ */
+
+  --r-sm:   6px;
+  --r-md:   12px;
+  --r-lg:   18px;
+  --r-xl:   24px;
+  --r-2xl:  36px;
+  --r-full: 9999px;
+
+  /* ============================================
+     SHADOWS (warm-tinted)
+     ============================================ */
+
+  --shadow-xs:  0 1px 3px rgba(44, 37, 32, 0.06);
+  --shadow-sm:  0 2px 8px rgba(44, 37, 32, 0.08);
+  --shadow-md:  0 6px 20px rgba(44, 37, 32, 0.10);
+  --shadow-lg:  0 16px 40px rgba(44, 37, 32, 0.12);
+  --shadow-xl:  0 32px 64px rgba(44, 37, 32, 0.14);
+  --shadow-card: 0 2px 12px rgba(197, 168, 128, 0.15);
+
+  /* ============================================
+     TRANSITIONS
+     ============================================ */
+
+  --dur-fast:    180ms;
+  --dur-normal:  320ms;
+  --dur-slow:    520ms;
+  --dur-slower:  750ms;
+  --dur-slowest: 1100ms;
+
+  --ease-out:     cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out:  cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);   /* ultra-smooth deceleration */
+  --ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ============================================
+     Z-INDEX
+     ============================================ */
+
+  --z-base:    0;
+  --z-card:    10;
+  --z-sticky:  200;
+  --z-nav:     300;
+  --z-overlay: 400;
+  --z-modal:   500;
+  --z-top:     999;
 }

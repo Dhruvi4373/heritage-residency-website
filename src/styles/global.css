@@ -1,10 +1,8 @@
-/* ========================================
-   GLOBAL RESET & BASE STYLES
-   ======================================== */
+/* ============================================
+   GLOBAL RESET & BASE — LIGHT EDITORIAL
+   ============================================ */
 
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -20,60 +18,30 @@ html {
 
 body {
   font-family: var(--font-sans);
-  font-size: var(--font-size-body);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--line-height-normal);
-  color: var(--color-text-primary-dark);
-  background-color: var(--color-bg-dark);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-normal);
+  color: var(--color-text-body);
+  background-color: var(--color-canvas);
   overflow-x: hidden;
   min-height: 100vh;
 }
 
-/* ========================================
-   TYPOGRAPHY ELEMENTS
-   ======================================== */
-
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--line-height-tight);
-  letter-spacing: var(--letter-spacing-tight);
+  font-weight: var(--fw-light);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--color-text-primary);
   margin: 0;
 }
 
-h1 {
-  font-size: var(--font-size-h1);
-}
-
-h2 {
-  font-size: var(--font-size-h2);
-}
-
-h3 {
-  font-size: var(--font-size-h3);
-}
-
-h4 {
-  font-size: var(--font-size-h4);
-}
-
-h5 {
-  font-size: var(--font-size-h5);
-}
-
-p {
-  margin: 0;
-  line-height: var(--line-height-relaxed);
-}
+p { margin: 0; line-height: var(--lh-relaxed); }
 
 a {
   color: inherit;
   text-decoration: none;
-  transition: color var(--duration-fast) var(--ease-out);
-}
-
-a:hover {
-  color: var(--color-accent-gold);
+  transition: color var(--dur-fast) var(--ease-out);
 }
 
 button {
@@ -85,175 +53,80 @@ button {
   padding: 0;
 }
 
-img,
-picture,
-video,
-canvas,
-svg {
+img, picture, video, canvas, svg {
   display: block;
   max-width: 100%;
   height: auto;
 }
 
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
+input, button, textarea, select { font: inherit; }
 
-/* ========================================
-   UTILITY CLASSES
-   ======================================== */
+/* ============================================
+   LAYOUT UTILITIES
+   ============================================ */
 
 .container {
   width: 100%;
-  max-width: var(--container-max-width);
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: var(--section-padding-x);
-  padding-right: var(--section-padding-x);
-}
-
-.content-wrapper {
-  max-width: var(--content-max-width);
-  margin-left: auto;
-  margin-right: auto;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--section-x);
 }
 
 .section {
-  padding-top: var(--section-padding-y);
-  padding-bottom: var(--section-padding-y);
+  padding-block: var(--section-y);
 }
 
-/* Text Utilities */
-.text-serif {
-  font-family: var(--font-serif);
-}
+/* ============================================
+   EYEBROW LABEL — reusable across all sections
+   ============================================ */
 
-.text-sans {
+.eyebrow {
+  display: inline-block;
   font-family: var(--font-sans);
-}
-
-.text-uppercase {
+  font-size: var(--fs-label);
+  font-weight: var(--fw-semibold);
   text-transform: uppercase;
-  letter-spacing: var(--letter-spacing-widest);
+  letter-spacing: var(--ls-widest);
+  color: var(--color-accent);
 }
 
-.text-center {
-  text-align: center;
-}
+/* ============================================
+   SCROLLBAR
+   ============================================ */
 
-.text-gold {
-  color: var(--color-accent-gold);
-}
-
-/* Background Utilities */
-.bg-dark {
-  background-color: var(--color-bg-dark);
-  color: var(--color-text-primary-dark);
-}
-
-.bg-cream {
-  background-color: var(--color-bg-cream);
-  color: var(--color-text-primary-light);
-}
-
-/* Overflow Utilities */
-.overflow-hidden {
-  overflow: hidden;
-}
-
-/* ========================================
-   ANIMATION UTILITIES
-   ======================================== */
-
-.fade-in {
-  animation: fadeIn var(--duration-slow) var(--ease-out) forwards;
-}
-
-.slide-up {
-  animation: slideUp var(--duration-slow) var(--ease-premium) forwards;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ========================================
-   SCROLLBAR STYLING
-   ======================================== */
-
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-bg-dark);
-}
-
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-canvas); }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-accent-gold-muted);
-  border-radius: var(--radius-full);
+  background: var(--color-accent-light);
+  border-radius: var(--r-full);
 }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent-gold);
-}
-
-/* ========================================
-   SELECTION STYLING
-   ======================================== */
+/* ============================================
+   SELECTION
+   ============================================ */
 
 ::selection {
-  background-color: var(--color-accent-gold);
-  color: var(--color-bg-dark);
+  background: var(--color-accent);
+  color: var(--color-surface);
 }
 
-::-moz-selection {
-  background-color: var(--color-accent-gold);
-  color: var(--color-bg-dark);
-}
-
-/* ========================================
-   FOCUS STYLES
-   ======================================== */
+/* ============================================
+   FOCUS
+   ============================================ */
 
 :focus-visible {
-  outline: 2px solid var(--color-accent-gold);
-  outline-offset: 4px;
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }
 
-button:focus-visible,
-a:focus-visible {
-  outline: 2px solid var(--color-accent-gold);
-  outline-offset: 4px;
-}
-
-/* ========================================
-   RESPONSIVE UTILITIES
-   ======================================== */
+/* ============================================
+   RESPONSIVE BASE
+   ============================================ */
 
 @media (max-width: 768px) {
   :root {
-    --section-padding-y: clamp(3rem, 8vw, 6rem);
-    --section-padding-x: clamp(1rem, 4vw, 2rem);
+    --section-y: clamp(3.5rem, 9vw, 6rem);
+    --section-x: clamp(1rem, 4vw, 1.75rem);
   }
 }
